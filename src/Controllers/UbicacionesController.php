@@ -53,7 +53,7 @@ class UbicacionesController extends BaseController {
 
         $titulos["title"] = lang('ubicaciones.title');
         $titulos["subtitle"] = lang('ubicaciones.subtitle');
-        return view('ubicaciones', $titulos);
+        return view('julio101290\boilerplatelocations\Views\ubicaciones', $titulos);
     }
 
     /**

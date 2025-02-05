@@ -436,8 +436,7 @@
                 // CSRF Hash
                 var csrfName = $('.txt_csrfname').attr('name'); // CSRF Token name
                 var csrfHash = $('.txt_csrfname').val(); // CSRF hash
-                //var pais = $('.pais').val(); // CSRF hash
-                var pais = "Méx" // CSRF hash
+                var pais = $('.pais').val(); // CSRF hash
 
                 return {
                     searchTerm: params.term, // search term
