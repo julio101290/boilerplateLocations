@@ -1,6 +1,6 @@
 <?php
 
-namespace julio101290\boilerplatecomplementopago\Commands;
+namespace julio101290\boilerplatelocations\Commands;
 
 use CodeIgniter\CLI\BaseCommand;
 use Config\Database;
@@ -10,7 +10,7 @@ use CodeIgniter\CLI\CLI;
 /**
  * Class InstallCommand.
  */
-class InstallCommandComplementoPago extends BaseCommand
+class InstallCommandLocations extends BaseCommand
 {
     /**
      * The group the command is lumped under
@@ -18,28 +18,28 @@ class InstallCommandComplementoPago extends BaseCommand
      *
      * @var string
      */
-    protected $group = 'boilerplatecomplementopago';
+    protected $group = 'boilerplatelocations';
 
     /**
      * The command's name.
      *
      * @var string
      */
-    protected $name = 'boilerplatecomplementopago:installcomplementopago';
+    protected $name = 'boilerplatelocations:installlocations';
 
     /**
      * The command's short description.
      *
      * @var string
      */
-    protected $description = 'Db install for basic boilerplate sells data.';
+    protected $description = 'Db install for basic boilerplate locations data.';
 
     /**
      * The command's usage.
      *
      * @var string
      */
-    protected $usage = 'boilerplatecomplementopago:installcomplementopago';
+    protected $usage = 'boilerplatelocations:installlocations';
 
     /**
      * The commamd's argument.
@@ -72,7 +72,7 @@ class InstallCommandComplementoPago extends BaseCommand
             $this->call('migrate');
             // then seed data
             $seeder = Database::seeder();
-            $seeder->call('julio101290\boilerplatecomplementopago\Database\Seeds\BoilerplateComplementoPago');
+            $seeder->call('julio101290\boilerplatelocations\Database\Seeds\BoilerplateLocations');
         } catch (\Exception $e) {
             $this->showError($e);
         }

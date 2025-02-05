@@ -7,7 +7,7 @@
 <!-- Section content -->
 <?= $this->section('content') ?>
 
-<?= $this->include('modulesUbicaciones/modalCaptureUbicaciones') ?>
+<?= $this->include('julio101290\boilerplatelocations\Views\modulesUbicaciones/modalCaptureUbicaciones') ?>
 
 <!-- SELECT2 EXAMPLE -->
 <div class="card card-default">

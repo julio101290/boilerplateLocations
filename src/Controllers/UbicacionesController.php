@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Controllers;
+namespace julio101290\boilerplatelocations\Controllers;
 
 use App\Controllers\BaseController;
-use \App\Models\{
+use julio101290\boilerplatelocations\Models\{
     UbicacionesModel
 };
-use App\Models\LogModel;
+use julio101290\boilerplatelog\Models\LogModel;
 use CodeIgniter\API\ResponseTrait;
-use App\Models\EmpresasModel;
+use julio101290\boilerplatecompanies\Models\EmpresasModel;
 
 class UbicacionesController extends BaseController {
 

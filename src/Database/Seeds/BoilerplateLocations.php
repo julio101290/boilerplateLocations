@@ -1,6 +1,6 @@
 <?php
 
-namespace julio101290\boilerplatecomplementopago\Database\Seeds;
+namespace julio101290\boilerplatelocations\Database\Seeds;
 
 use CodeIgniter\Config\Services;
 use CodeIgniter\Database\Seeder;
@@ -10,7 +10,7 @@ use Myth\Auth\Models\UserModel;
 /**
  * Class BoilerplateSeeder.
  */
-class BoilerplateComplementoPago extends Seeder {
+class BoilerplateLocations extends Seeder {
 
     /**
      * @var Authorize
@@ -37,10 +37,10 @@ class BoilerplateComplementoPago extends Seeder {
 
 
         // Permission
-        $this->authorize->createPermission('listapagos-permission', 'Permission to payment complement CFDI4.0');
+        $this->authorize->createPermission('ubicaciones-permission', 'Permission for locations letter port CFDI4.0');
 
         // Assign Permission to user
-        $this->authorize->addPermissionToUser('listapagos-permission', 1);
+        $this->authorize->addPermissionToUser('ubicaciones-permission', 1);
 
     }
 
