@@ -1,6 +1,6 @@
 {
     "name": "julio101290/boilerplatelocations",
-    "description": "library to locations, required for port letter",
+    "description": "library to locations, required for port letter Carta Porte",
     "keywords": [
         "codeigniter4",
         "backup",
@@ -10,7 +10,9 @@
         "CRUD",
         "invoice",
         "authorization",
+        "CFDI",
         "payments",
+        "Carta Porte",
         "boilerplate"
     ],
     "type": "library",
