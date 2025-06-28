@@ -34,7 +34,7 @@ Library to locations, required for port letter (Carta Porte)CFDI 4.0
 
  	composer require julio101290/boilerplatesells
 
-  	composer require julio101290/boilerplatelocations
+  	composer require julio101290/boilerplatecomplementopago
 
 
 ### Run command for migration and seeder
@@ -53,19 +53,19 @@ Library to locations, required for port letter (Carta Porte)CFDI 4.0
 
 	php spark boilerplatequotes:installsells
 
- 	php spark boilerplatelocations:installlocations
+ 	php spark boilerplatecomplementopago:installcomplementopago
 	
 
 # Make the Menu, Example
-![image](https://github.com/user-attachments/assets/9eac6170-96b3-48e2-bb5e-b5c05a653ef7)
-
+![image](https://github.com/user-attachments/assets/e8922b6f-6afe-49b4-ad37-5eb82665c179)
 
 
 
 # Ready
 
-![image](https://github.com/user-attachments/assets/77b038ab-95e5-49c9-b492-bcdfdcc17641)
+![image](https://github.com/user-attachments/assets/f059a131-b411-4855-971a-86098ac5af5f)
 
+![image](https://github.com/user-attachments/assets/1497254f-16ad-4c42-b118-ee1f27df5bad)
 
 
 

@@ -43,31 +43,60 @@ class UbicacionesModel extends Model {
     protected $validationMessages = [];
     protected $skipValidation = false;
 
-    public function mdlGetUbicaciones($idEmpresas) {
-
-        $result = $this->db->table('ubicaciones a, empresas b')
+    public function mdlGetUbicacionesServerSide($idEmpresas, $searchValue, $orderColumn, $orderDir, $start, $length) {
+        $builder = $this->db->table('ubicaciones a')
                 ->select('a.id
-                         ,a.RFCRemitenteDestinatario
-                         ,a.nombreRazonSocial
-                         ,a.idEmpresa
-                         ,a.calle   
-                         ,a.descripcion
-                         ,a.numInterior
-                         ,a.numExterior
-                         ,a.colonia
-                         ,a.localidad
-                         ,a.referencia
-                         ,a.municipio
-                         ,a.estado
-                         ,a.pais
-                         ,a.codigoPostal
-                         ,a.created_at
-                         ,a.updated_at
-                         ,a.deleted_at 
-                         ,b.nombre as nombreEmpresa')
-                ->where('a.idEmpresa', 'b.id', FALSE)
+                ,a.RFCRemitenteDestinatario
+                ,a.nombreRazonSocial
+                ,a.idEmpresa
+                ,a.calle
+                ,a.descripcion
+                ,a.numInterior
+                ,a.numExterior
+                ,a.colonia
+                ,a.localidad
+                ,a.referencia
+                ,a.municipio
+                ,a.estado
+                ,a.pais
+                ,a.codigoPostal
+                ,a.created_at
+                ,a.updated_at
+                ,a.deleted_at
+                ,b.nombre AS nombreEmpresa')
+                ->join('empresas b', 'a.idEmpresa = b.id')
                 ->whereIn('a.idEmpresa', $idEmpresas);
 
-        return $result;
+        // Total sin filtros
+        $total = $builder->countAllResults(false);
+
+        // Búsqueda
+        if ($searchValue) {
+            $builder->groupStart()
+                    ->like('a.nombreRazonSocial', $searchValue)
+                    ->orLike('a.RFCRemitenteDestinatario', $searchValue)
+                    ->orLike('b.nombre', $searchValue)
+                    ->groupEnd();
+        }
+
+        // Total con filtros
+        $filtered = $builder->countAllResults(false);
+
+        // Ordenamiento
+        if ($orderColumn && $orderDir) {
+            $builder->orderBy($orderColumn, $orderDir);
+        }
+
+        // Paginación
+        $builder->limit($length, $start);
+
+        // Datos
+        $data = $builder->get()->getResultArray();
+
+        return [
+            'total' => $total,
+            'filtered' => $filtered,
+            'data' => $data
+        ];
     }
 }

@@ -46,9 +46,37 @@ class UbicacionesController extends BaseController {
 
 
         if ($this->request->isAJAX()) {
-            $datos = $this->ubicaciones->mdlGetUbicaciones($empresasID);
 
-            return \Hermawan\DataTables\DataTable::of($datos)->toJson(true);
+            $request = service('request');
+            $draw = $request->getGet('draw');
+            $start = $request->getGet('start');
+            $length = $request->getGet('length');
+            $search = $request->getGet('search')['value'] ?? '';
+            $order = $request->getGet('order');
+            $columns = $request->getGet('columns');
+
+            // Orden dinámico
+            $orderColumnIndex = $order[0]['column'] ?? 0;
+            $orderColumn = $columns[$orderColumnIndex]['data'] ?? 'a.id';
+            $orderDir = $order[0]['dir'] ?? 'asc';
+
+   
+
+            $resultado = $this->ubicaciones->mdlGetUbicacionesServerSide(
+                    $empresasID,
+                    $search,
+                    $orderColumn,
+                    $orderDir,
+                    $start,
+                    $length
+            );
+
+            return $this->response->setJSON([
+                        'draw' => intval($draw),
+                        'recordsTotal' => $resultado['total'],
+                        'recordsFiltered' => $resultado['filtered'],
+                        'data' => $resultado['data']
+            ]);
         }
 
         $titulos["title"] = lang('ubicaciones.title');
@@ -246,12 +274,6 @@ class UbicacionesController extends BaseController {
         }
 
         $data = array();
-
-        $data[] = array(
-            "id" => "",
-            "text" => "Sin Seleccionar",
-        );
-
         foreach ($listColoniasSAT as $coloniaSAT => $value) {
 
             $data[] = array(
@@ -312,12 +334,6 @@ class UbicacionesController extends BaseController {
         }
 
         $data = array();
-
-        $data[] = array(
-            "id" => "",
-            "text" => "Sin Seleccionar",
-        );
-
         foreach ($listLocalidadesSAT as $localidadSAT => $value) {
 
             $data[] = array(
@@ -375,12 +391,6 @@ class UbicacionesController extends BaseController {
         }
 
         $data = array();
-
-        $data[] = array(
-            "id" => "",
-            "text" => "Sin Seleccionar",
-        );
-
         foreach ($listMunicipiosSAT as $municipioSAT => $value) {
 
             $data[] = array(
@@ -429,12 +439,6 @@ class UbicacionesController extends BaseController {
         }
 
         $data = array();
-
-        $data[] = array(
-            "id" => "",
-            "text" => "Sin Seleccionar",
-        );
-
         foreach ($listEstadosSAT as $estadosSAT => $value) {
 
             $data[] = array(
@@ -476,12 +480,6 @@ class UbicacionesController extends BaseController {
         }
 
         $data = array();
-
-        $data[] = array(
-            "id" => "",
-            "text" => "Sin Seleccionar",
-        );
-
         foreach ($listPaisesSAT as $paisSAT => $value) {
 
             $data[] = array(
@@ -535,11 +533,6 @@ class UbicacionesController extends BaseController {
                         ->where("idEmpresa", $idEmpresa, FALSE)
                         ->like("descripcion", $searchTerm)->findAll();
         $data = array();
-
-        $data[] = array(
-            "id" => "",
-            "text" => "Sin Seleccionar",
-        );
 
         foreach ($listUbicaciones as $ubicaciones) {
             $data[] = array(
