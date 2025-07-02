@@ -17,6 +17,12 @@ $routes->group('admin', function ($routes) {
             , 'UbicacionesController::save'
             , ['namespace' => 'julio101290\boilerplatelocations\Controllers']
     );
+    
+    $routes->post('ubicaciones/getUbicacionesAjax'
+            , 'UbicacionesController::getUbicacionesAjax'
+            , ['namespace' => 'julio101290\boilerplatelocations\Controllers']
+            );
+
 
     $routes->post('ubicaciones/getUbicaciones'
             , 'UbicacionesController::getUbicaciones'

@@ -60,8 +60,6 @@ class UbicacionesController extends BaseController {
             $orderColumn = $columns[$orderColumnIndex]['data'] ?? 'a.id';
             $orderDir = $order[0]['dir'] ?? 'asc';
 
-   
-
             $resultado = $this->ubicaciones->mdlGetUbicacionesServerSide(
                     $empresasID,
                     $search,
@@ -528,10 +526,16 @@ class UbicacionesController extends BaseController {
             $searchTerm = $postData['searchTerm'];
         }
 
+        $searchTerm = strtolower(
+                $this->ubicaciones->db->escapeLikeString($searchTerm)
+        );
+
         $listUbicaciones = $this->ubicaciones
-                        ->select("id,descripcion")
-                        ->where("idEmpresa", $idEmpresa, FALSE)
-                        ->like("descripcion", $searchTerm)->findAll();
+                ->select("id, descripcion")
+                ->where("idEmpresa", $idEmpresa)
+                ->where("LOWER(descripcion) LIKE", "%{$searchTerm}%")
+                ->findAll();
+
         $data = array();
 
         foreach ($listUbicaciones as $ubicaciones) {
