@@ -272,6 +272,11 @@ class UbicacionesController extends BaseController {
         }
 
         $data = array();
+
+        $data[] = array(
+            "id" => "",
+            "text" => "Sin Seleccionar",
+        );
         foreach ($listColoniasSAT as $coloniaSAT => $value) {
 
             $data[] = array(
@@ -332,6 +337,10 @@ class UbicacionesController extends BaseController {
         }
 
         $data = array();
+        $data[] = array(
+            "id" => "",
+            "text" => "Sin Seleccionar",
+        );
         foreach ($listLocalidadesSAT as $localidadSAT => $value) {
 
             $data[] = array(
@@ -389,6 +398,10 @@ class UbicacionesController extends BaseController {
         }
 
         $data = array();
+        $data[] = array(
+            "id" => "",
+            "text" => "Sin Seleccionar",
+        );
         foreach ($listMunicipiosSAT as $municipioSAT => $value) {
 
             $data[] = array(
@@ -437,6 +450,10 @@ class UbicacionesController extends BaseController {
         }
 
         $data = array();
+        $data[] = array(
+            "id" => "",
+            "text" => "Sin Seleccionar",
+        );
         foreach ($listEstadosSAT as $estadosSAT => $value) {
 
             $data[] = array(
@@ -478,6 +495,10 @@ class UbicacionesController extends BaseController {
         }
 
         $data = array();
+        $data[] = array(
+            "id" => "",
+            "text" => "Sin Seleccionar",
+        );
         foreach ($listPaisesSAT as $paisSAT => $value) {
 
             $data[] = array(
@@ -537,6 +558,10 @@ class UbicacionesController extends BaseController {
                 ->findAll();
 
         $data = array();
+        $data[] = array(
+            "id" => "",
+            "text" => "Sin Seleccionar",
+        );
 
         foreach ($listUbicaciones as $ubicaciones) {
             $data[] = array(
